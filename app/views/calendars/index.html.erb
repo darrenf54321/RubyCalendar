@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4"></div>
+      <div class="col-lg-4"></div>
+    </div>
+  </div>
+
+  <% if current_user %>
+    <%= month_calendar events: @calendar_events  do |date, calendar_events| %>
+
+      <%= content_tag :div, class: "calendar-day", data: {date: date} do %>
+       <%= date.strftime("%d") %>
+      <% end %>
+      <% if current_user %>
+        <% calendar_events.each do |calendar| %>
+          <div>
+            <%= link_to "#{calendar.details}",  edit_user_calendar_event_path(@user,calendar) %>
+          </div>
+          <% if calendar.calendar_completed == "Yes" %>
+            <%= image_tag('green-tick.png', class: "completed-calendar-event" ) %>
+          <% elsif calendar.calendar_completed == "No" %>
+            <%= image_tag('red-cross.png', class: "failed-calendar-event" ) %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <div class="row text-center">
+      <h1>Welcome to Rules n Regs Inc.</h1>
+      <h2>Please Sign in or Sign up</h2>
+    </div>
+  <% end %>

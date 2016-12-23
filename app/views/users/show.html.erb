@@ -1,0 +1,11 @@
+<div class="container">
+	<% if @user.has_image_file? %>
+		<%= link_to image_tag(@user.image.url(:large)), @user.image.url %>
+	<% end %>
+	<h1><%= "Username #{@user.username}" if @user.username %></h1>
+	<h2><%= "Email: #{@user.email}" %></h2>
+	<h3>Postcode: <%= @user.postcode %></h3>
+
+
+
+</div>

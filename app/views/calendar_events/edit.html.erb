@@ -1,0 +1,44 @@
+<div class="row">
+ <div class="col-lg-4"></div>
+ <div class="col-lg-4">
+
+    <%= form_for(@calendar_event) do |f| %>
+      <% if @calendar_event.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@calendar_event.errors.count, "error") %> prohibited this calendar event from being updated:</h2>
+
+          <ul>
+          <% @calendar_event.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= f.label :details %>
+        <%= f.text_area(:details, size: "24x6") %>
+      </div>
+
+        <div class="field">
+          <%= f.label :start_time %>
+          <%= f.date_select :start_time %>
+        </div>
+        <div class="field">
+          <%= f.label :calendar_completed, "Task Completed?" %>
+          <%= f.select :calendar_completed, ["Unconfirmed", "Yes", "No"] %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit t('.calendar_event', :default => "Edit Event"), class: "btn btn-primary"  %>
+        </div>
+    <% end %>
+
+  </div>
+  <div class="col-lg-4"></div>
+</div>
+
+
+
+<%= link_to 'Show', @calendar_event %> |
+<%= link_to 'Back', calendar_events_path %>

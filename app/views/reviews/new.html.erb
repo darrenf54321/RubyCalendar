@@ -1,0 +1,12 @@
+<div class="container-fluid">
+ <div class="row">
+   <div class="col-lg-4"></div>
+   <div class="col-lg-4">
+      <%= form_for [@calendar_event] do |f| %>
+        <%= f.label :completed %>
+        <%= f.select :completed, ["Unconfirmed", "Yes", "No"] %>
+      <% end %>
+    </div>
+    <div class="col-lg-4"></div>
+  </div>
+</div>

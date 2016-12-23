@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
+
+      <h4 id="notice"><%= notice %></h4>
+
+      <h2>Calendar Event Details</h2>
+
+
+      <h4>
+        <strong>Details:</strong>
+        <%= @calendar_event.details %>
+      </h4>
+
+      <h4>
+        <strong>Start time:</strong>
+        <%= @calendar_event.start_time %>
+      </h4>
+
+      <h4>
+        <strong>Completed?</strong>
+        <%= @calendar_event.calendar_completed %>
+      </h4>
+
+      <% if @calendar_event.users.count > 0 %>
+        <h6>Created by:</h6>
+        <ul>
+          <% @calendar_event.users.each do |calendar_event_user| %>
+            <li><%= link_to "#{calendar_event_user.email}", user_path(calendar_event_user) %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <p><%= link_to 'Edit', edit_calendar_event_path(@calendar_event), class: "btn btn-secondary"  %></p>
+
+    </div>
+    <div class="col-lg-4"></div>
+  </div>
+</div>
